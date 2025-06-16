@@ -49,12 +49,7 @@
   <h2>Submit Your Work for Week 1</h2>
   <form id="progressForm">
     <input type="text" id="name" placeholder="Your Name" required><br>
-    <select id="status" required>
-  <option value="" disabled selected>Have you completed the task?</option>
-  <option value="Yes"> Yes</option>
-  <option value="No"> No</option>
-</select><br>
-
+   <input type="text" id="repo" placeholder="GitHub Repo Link" required><br>
     <input type="hidden" id="regno">
     <input type="hidden" id="week" value="Week 1">
     <button type="submit">Submit</button>
@@ -99,7 +94,7 @@
       const formData = new URLSearchParams();
       formData.append("name", document.getElementById("name").value);
       formData.append("regno", regno);
-      formData.append("repo", document.getElementById("status").value);
+      formData.append("repo", document.getElementById("repo").value);
       formData.append("week", "Week 1");
 
       fetch("https://script.google.com/macros/s/AKfycby2blP9oZ3M_hxV-d0vSyMPqCf4MNizq5QPlwRSPfuVR6Ae6IesZBAyeA3jqkB9WwJydA/exec", {
