@@ -48,7 +48,12 @@ are prioritized? </p>
   <h2>Submit Your Work for Week 1</h2>
   <form id="progressForm">
     <input type="text" id="name" placeholder="Your Name" required><br>
-    <input type="text" id="repo" placeholder="GitHub Repo Link" required><br>
+    <select id="status" required>
+  <option value="" disabled selected>Have you completed the task?</option>
+  <option value="Yes"> Yes</option>
+  <option value="No"> No</option>
+</select><br>
+
     <input type="hidden" id="regno">
     <input type="hidden" id="week" value="Week 1">
     <button type="submit">Submit</button>
@@ -93,7 +98,7 @@ are prioritized? </p>
       const formData = new URLSearchParams();
       formData.append("name", document.getElementById("name").value);
       formData.append("regno", regno);
-      formData.append("repo", document.getElementById("repo").value);
+      formData.append("repo", document.getElementById("status").value);
       formData.append("week", "Week 1");
 
       fetch("https://script.google.com/macros/s/AKfycby-trb-r9LLsxrBOrl30jViT7onXHB85Ea_FnP5RijkcbFMFm0ZAKupiviXvkuC_uC-tA/exec", {

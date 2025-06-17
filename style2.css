@@ -74,14 +74,14 @@ h3 {
     box-shadow: 0 6px 20px rgba(0, 188, 212, 0.5);
     transform: translateY(-2px);
 }
-/* Styled Select Dropdown */
+
 form select {
     width: 100%;
     padding: 10px 15px;
     margin-bottom: 20px;
     border: none;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.3); /* transparent dark to blend with background */
     color: #ffffff;
     font-size: 1rem;
     appearance: none;
@@ -93,10 +93,11 @@ form select {
     background-size: 16px;
 }
 
-form select:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #00bcd4;
+form select option {
+    background-color: #0d1b2a; /* fallback solid background for dropdown list */
+    color: #ffffff;
 }
+
 
 /* Tab Content */
 .tab-content {
