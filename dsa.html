@@ -66,11 +66,25 @@
     const tabs = document.querySelectorAll('.tab');
     const tabContents = document.querySelectorAll('.tab-content');
     function showTab(index) {
-      tabs.forEach((tab, i) => {
-        tab.classList.toggle('active', i === index);
-        tabContents[i].classList.toggle('active', i === index);
-      });
-    }
+  // Switch active tab
+  tabs.forEach((tab, i) => {
+    tab.classList.toggle('active', i === index);
+    tabContents[i].classList.toggle('active', i === index);
+  });
+
+  // Update heading text
+  const weekHeading = document.querySelectorAll('.tab')[index].innerText;
+  document.querySelector('h2:last-of-type').innerText = `Submit Your Work for ${weekHeading}`;
+
+  // Update hidden input for week
+  document.getElementById("week").value = weekHeading;
+
+  // Clear form fields and response
+  document.getElementById("name").value = '';
+  document.getElementById("status").selectedIndex = 0;
+  document.getElementById("response").innerText = '';
+}
+
 
     const urlParams = new URLSearchParams(window.location.search);
     const regno = urlParams.get("regno");
@@ -100,7 +114,8 @@
       formData.append("name", document.getElementById("name").value);
       formData.append("regno", regno);
       formData.append("repo", document.getElementById("status").value);
-      formData.append("week", "Week 1");
+      formData.append("week", document.getElementById("week").value);
+
 
       fetch("https://script.google.com/macros/s/AKfycby2blP9oZ3M_hxV-d0vSyMPqCf4MNizq5QPlwRSPfuVR6Ae6IesZBAyeA3jqkB9WwJydA/exec", {
         method: "POST",

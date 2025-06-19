@@ -33,8 +33,49 @@ are prioritized? </p>
 
   </div>
   <div class="tab-content">
-    <h3>Week 2: coming soon....</h3>
-    <p></p>
+    <h3>Week 2: Titanic Survival Analysis (Mini-Project)</h3>
+  <p>Explore the Titanic dataset to identify patterns and factors related to passenger survival using data cleaning, 
+    visualization, and EDA techniques.</p>
+  <p><strong><u>Objective:</u></strong> Perform EDA to find patterns in survival based on features like gender, 
+    class, age, family aboard, and embarkation point. Use <code>.groupby()</code>, <code>value_counts()</code>, and charts
+     (bar plots, histograms, heatmaps).</p>
+  <h4><u>Steps:</u></h4>
+  <ol>
+    <li>Load and inspect the data</li>
+    <li>Preprocess the data</li>
+    <li>Visualize the data: Example plots — survival vs. gender, class distribution, etc.</li>
+    <li>Perform EDA: Identify key trends and correlations. Investigate how variables like age, 
+      class, fare, and gender influence survival.</li>
+  </ol>
+
+  <h4><u>Predict & Analyze:</u></h4>
+  <ul>
+    <li>Basic Survival Stats (What % survived overall; Did more men or women survive?)</li>
+    <li>Survival by class</li>
+    <li>Survival by age</li>
+    <li>Survival by family aboard (SibSp + Parch)</li>
+    <li>Survival by port of embarkation</li>
+    <li>Were passengers with higher fares more likely to survive?</li>
+    <li>Which age group (child, adult, elderly) had better chances?</li>
+  </ul>
+
+  <h4><u>Legend for Dataset Columns:</u></h4>
+  <ul>
+    <li><strong>survival</strong> — 0 = No, 1 = Yes</li>
+    <li><strong>pclass</strong> — Ticket class (1 = 1st, 2 = 2nd, 3 = 3rd)</li>
+    <li><strong>sibsp</strong> — Number of siblings/spouses aboard</li>
+    <li><strong>parch</strong> — Number of parents/children aboard</li>
+    <li><strong>ticket</strong> — Ticket number</li>
+    <li><strong>fare</strong> — Fare paid</li>
+    <li><strong>cabin</strong> — Cabin number</li>
+    <li><strong>embarked</strong> — Port of embarkation (C = Cherbourg, Q = Queenstown, S = Southampton)</li>
+  </ul>
+<a href="https://learnermanipal-my.sharepoint.com/:w:/g/personal/lakshmi_mitmpl2023_learner_manipal_edu/EQQ8kISuJiBAiPVRDSxJhVMBOwMT5aotqYdvRdEl9XPsew?e=GIWteG" target="_blank" class="github-link">mini-project Word Doc
+</a>
+
+    <a id="dataset" class="github-link" href=" https://drive.google.com/file/d/19cdVE2w7BBq56-Z2X8m0G3gWSJN9QI-4/view?usp=sharing" target="_blank">DATASET</a>
+ <a id="week1-link" class="github-link" href="https://github.com/ACMW-Manipal/ML_SummerSchool_2025" target="_blank">Upload into GitHub</a>
+
   </div>
   <div class="tab-content">
     <h3>Week 3: coming soon....</h3>
@@ -65,11 +106,25 @@ are prioritized? </p>
     const tabs = document.querySelectorAll('.tab');
     const tabContents = document.querySelectorAll('.tab-content');
     function showTab(index) {
-      tabs.forEach((tab, i) => {
-        tab.classList.toggle('active', i === index);
-        tabContents[i].classList.toggle('active', i === index);
-      });
-    }
+  // Switch active tab
+  tabs.forEach((tab, i) => {
+    tab.classList.toggle('active', i === index);
+    tabContents[i].classList.toggle('active', i === index);
+  });
+
+  // Update heading text
+  const weekHeading = document.querySelectorAll('.tab')[index].innerText;
+  document.querySelector('h2:last-of-type').innerText = `Submit Your Work for ${weekHeading}`;
+
+  // Update hidden input for week
+  document.getElementById("week").value = weekHeading;
+
+  // Clear form fields and response
+  document.getElementById("name").value = '';
+  document.getElementById("status").selectedIndex = 0;
+  document.getElementById("response").innerText = '';
+}
+
 
     const urlParams = new URLSearchParams(window.location.search);
     const regno = urlParams.get("regno");
@@ -99,7 +154,8 @@ are prioritized? </p>
       formData.append("name", document.getElementById("name").value);
       formData.append("regno", regno);
       formData.append("repo", document.getElementById("status").value);
-      formData.append("week", "Week 1");
+      formData.append("week", document.getElementById("week").value);
+
 
       fetch("https://script.google.com/macros/s/AKfycby-trb-r9LLsxrBOrl30jViT7onXHB85Ea_FnP5RijkcbFMFm0ZAKupiviXvkuC_uC-tA/exec", {
         method: "POST",
