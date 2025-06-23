@@ -15,6 +15,7 @@
     <div class="tab" onclick="showTab(1)">Week 2</div>
     <div class="tab" onclick="showTab(2)">Week 3</div>
     <div class="tab" onclick="showTab(3)">Week 4</div>
+    <div class="tab" onclick="showTab(4); launchConfetti()">🏆 Leaderboard</div>
   </div>
 
   <div class="tab-content active">
@@ -45,6 +46,21 @@
     <h3>Week 4:coming soon..</h3>
     <p></p>
   </div>
+  <div class="tab-content">
+  <h3>🏆 Top 5 Submissions – Leaderboard</h3>
+  <div class="leaderboard-section">
+    <h4>⚡ DSA – Week 1</h4>
+    <ol class="leaderboard">
+      <li>Biash Gazi </li>
+      <li>Aditi  </li>
+      <li>Samridhi Dhamija</li>
+      <li>Anusha Singh</li>
+      <li>Sbhijaya Singh</li>
+    </ol>
+  </div>
+
+  <canvas id="confettiCanvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1000;"></canvas>
+</div>
 
   <h2>Submit Your Work for Week 1</h2>
   <form id="progressForm">
@@ -66,24 +82,35 @@
     const tabs = document.querySelectorAll('.tab');
     const tabContents = document.querySelectorAll('.tab-content');
     function showTab(index) {
-  // Switch active tab
+  // Switch active tab and content
   tabs.forEach((tab, i) => {
     tab.classList.toggle('active', i === index);
     tabContents[i].classList.toggle('active', i === index);
   });
 
-  // Update heading text
+  // Get the selected tab's name
   const weekHeading = document.querySelectorAll('.tab')[index].innerText;
-  document.querySelector('h2:last-of-type').innerText = `Submit Your Work for ${weekHeading}`;
 
-  // Update hidden input for week
-  document.getElementById("week").value = weekHeading;
+  // If it's the leaderboard tab
+  if (weekHeading.includes("Leaderboard")) {
+    document.querySelector('h2:last-of-type').style.display = 'none';
+    document.getElementById("progressForm").style.display = 'none';
+    document.getElementById("response").style.display = 'none';
+  } else {
+    // Show and update form title & inputs
+    document.querySelector('h2:last-of-type').style.display = 'block';
+    document.querySelector('h2:last-of-type').innerText = `Submit Your Work for ${weekHeading}`;
+    document.getElementById("progressForm").style.display = 'block';
+    document.getElementById("response").style.display = 'block';
 
-  // Clear form fields and response
-  document.getElementById("name").value = '';
-  document.getElementById("status").selectedIndex = 0;
-  document.getElementById("response").innerText = '';
+    // Reset fields
+    document.getElementById("week").value = weekHeading;
+    document.getElementById("name").value = '';
+    document.getElementById("status").selectedIndex = 0;
+    document.getElementById("response").innerText = '';
+  }
 }
+
 
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -132,5 +159,29 @@
       });
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+  function launchConfetti() {
+    const duration = 2 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+    const interval = setInterval(function() {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: Math.random(), y: Math.random() - 0.2 }
+      });
+    }, 200);
+  }
+</script>
+
 </body>
 </html>

@@ -191,3 +191,45 @@ form button:hover {
     text-align: center;
     font-weight: 500;
 }
+
+.leaderboard-section {
+  background: rgba(13, 27, 42, 0.8); /* same dark tone as body background */
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 600px;
+  box-shadow: 0 8px 16px rgba(0,188,212,0.2);
+  animation: popIn 1s ease;
+  color: #e0f7fa; /* light blue text */
+  border: 1px solid #00acc1;
+}
+
+.leaderboard-section h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  color: #00e5ff; /* cyan heading */
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 3px #007c91;
+}
+
+.leaderboard {
+  list-style: none;
+  padding: 0;
+  font-size: 1.15rem;
+  font-family: 'Roboto', sans-serif;
+}
+
+.leaderboard li {
+  background: rgba(0, 172, 193, 0.1); /* transparent teal */
+  margin: 10px 0;
+  padding: 12px 20px;
+  border-radius: 12px;
+  border-left: 4px solid #00acc1;
+  color: #e0f7fa;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.leaderboard li:hover {
+  transform: scale(1.03);
+  background: rgba(0, 172, 193, 0.2);
+}
